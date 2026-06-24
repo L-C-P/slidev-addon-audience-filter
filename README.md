@@ -33,6 +33,9 @@ export default createAudienceFilterPreparser()
 After creating or changing `setup/preparser.ts`, fully stop and restart the dev
 server (a hot reload is not enough for preparser changes).
 
+You do **not** need to add this package to the `addons:` list — the
+`setup/preparser.ts` stub above is what activates the filter.
+
 ### 2. Set the active audience
 
 #### Option A: Environment variable (recommended for CLI)
