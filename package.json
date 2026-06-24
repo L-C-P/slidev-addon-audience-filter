@@ -17,7 +17,12 @@
   "dependencies": {
     "@slidev/types": "^52.14.2"
   },
+  "main": "index.ts",
+  "exports": {
+    ".": "./index.ts"
+  },
   "files": [
+    "index.ts",
     "setup"
   ],
   "engines": {
