@@ -1,13 +1,13 @@
 ---
 theme: default
-addons:
-  - ./
+# Illustrative demo only. In a real project, filtering is activated by a
+# setup/preparser.ts stub (see README) — not by the addons list.
 audience: live
 ---
 
 # Audience Filter Addon Demo
 
-Test presentation for the audience filter addon
+Slide visibility below reflects `audience: live`
 
 ---
 
