@@ -9,13 +9,18 @@
   "scripts": {
     "dev": "slidev",
     "build": "slidev build",
-    "export": "slidev export"
+    "export": "slidev export",
+    "typecheck": "tsc --noEmit"
   },
   "description": "Filter slides based on audience using showFor/hideFor frontmatter",
   "license": "MIT",
   "author": "Denis Sowa",
   "dependencies": {
     "@slidev/types": "^52.14.2"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "typescript": "^5.5.0"
   },
   "main": "index.ts",
   "exports": {
