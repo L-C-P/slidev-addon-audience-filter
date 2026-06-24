@@ -1,0 +1,27 @@
+{
+  "name": "slidev-addon-audience-filter",
+  "version": "0.1.0",
+  "type": "module",
+  "keywords": [
+    "slidev-addon",
+    "slidev"
+  ],
+  "scripts": {
+    "dev": "slidev",
+    "build": "slidev build",
+    "export": "slidev export"
+  },
+  "description": "Filter slides based on audience using showFor/hideFor frontmatter",
+  "license": "MIT",
+  "author": "Denis Sowa",
+  "dependencies": {
+    "@slidev/types": "^52.14.2"
+  },
+  "files": [
+    "setup"
+  ],
+  "engines": {
+    "node": ">=18",
+    "slidev": ">=0.52.0"
+  }
+}
