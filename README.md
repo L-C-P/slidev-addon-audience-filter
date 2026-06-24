@@ -115,22 +115,6 @@ showFor:
 
 Values are case-insensitive and trimmed automatically.
 
-## Development
-
-For local development:
-
-```bash
-# Clone the repository
-git clone https://github.com/yourusername/slidev-addon-audience-filter.git
-cd slidev-addon-audience-filter
-
-# Install dependencies
-npm install
-
-# Start Slidev with the demo presentation
-npm run dev
-```
-
 ## License
 
 MIT
