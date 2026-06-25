@@ -53,6 +53,11 @@ export function createAudienceFilterPreparser() {
       {
         name: 'audience-filter',
         async transformSlide(content, frontmatter) {
+          // Defensive: if slide is already hidden by other means, don't touch it
+          if (frontmatter?.hide === true || frontmatter?.disabled === true) {
+            return content
+          }
+
           const showFor = frontmatter?.showFor
           const hideFor = frontmatter?.hideFor
 
