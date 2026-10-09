@@ -19,6 +19,8 @@ The active audience is set via the `AUDIENCE` environment variable or the `audie
 |---|---|
 | `index.ts` | Main entry point – exports `createAudienceFilterPreparser()` |
 | `setup/preparser.ts` | Preparser entry loaded by Slidev when the addon is listed in `addons` (also used by the standalone preview) |
+| `setup/vite-plugins.ts` | Vite plugin: `virtual:audience-filter` state module and runtime audience switch via the Vite HMR channel (dev only) |
+| `custom-nav-controls.vue` | Presenter nav bar control showing/switching the active audience |
 | `slides.md` | Demo/preview slides for this addon |
 | `.github/workflows/publish.yml` | CI/CD workflow – publishes to npm on tag push |
 
@@ -29,6 +31,8 @@ The active audience is set via the `AUDIENCE` environment variable or the `audie
 - Consumer projects enable the filter by listing the addon in `addons`. This requires Slidev >= 52.17.1, which applies addon preparsers on the initial load (fix for slidevjs/slidev#2646 via PR #2664). `engines.slidev` enforces this.
 - Fallback for older Slidev: consumers create their own `setup/preparser.ts` that imports `createAudienceFilterPreparser()` and do not list the addon in `addons`.
 - `AUDIENCE=bypass` disables all filtering (useful for IDE editing).
+- Runtime switch: the client sends `audience-filter:set` over the Vite HMR channel; the plugin sets `process.env.AUDIENCE` and emits a watcher change on the entry, so Slidev re-parses and the preparser applies the new audience. No HTTP endpoint and nothing in the consumer project is needed.
+- Preparser and Vite plugin share state (known audiences, headmatter audience) via a `globalThis` symbol, because Slidev may load them as separate module instances.
 - `showFor` and `hideFor` support both comma-separated strings and YAML arrays. Values are case-insensitive.
 
 ---

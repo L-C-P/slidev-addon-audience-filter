@@ -36,7 +36,8 @@
   },
   "files": [
     "index.ts",
-    "setup"
+    "setup",
+    "custom-nav-controls.vue"
   ],
   "engines": {
     "node": ">=18",

@@ -8,6 +8,7 @@ A [Slidev](https://sli.dev) addon that filters slides based on the target audien
 - **Flexible configuration**: Set audience via environment variable or headmatter
 - **Bypass mode**: Disable filtering for IDE editing with `AUDIENCE=bypass`
 - **Comma-separated or array syntax**: Supports both formats for audience lists
+- **Presenter switch**: Shows the active audience in the presenter nav bar and lets you switch it while the dev server is running
 
 ## Installation
 
@@ -103,6 +104,32 @@ Set `AUDIENCE=bypass` to disable all filtering. This is useful when editing slid
 ```bash
 AUDIENCE=bypass slidev
 ```
+
+`audience: bypass` in the headmatter works the same way. The value is case-insensitive.
+
+## Presenter Switch
+
+The addon adds a UI element to the nav bar in **presenter mode** (an audience
+icon next to the active audience). It is not shown in the audience view or on a
+second screen.
+
+- **Dev server (`slidev`):** a dropdown that switches the audience at runtime.
+- **Static build (`slidev build`):** the audience is fixed at build time and
+  only displayed, without a dropdown.
+
+How the dropdown behaves:
+
+- The options are all audiences used in `showFor`/`hideFor`, the `audience`
+  headmatter value, and `bypass`. They are shown in lowercase, with `bypass`
+  first and the rest sorted alphabetically (case-insensitive).
+- Switching re-parses the slides, so the slide list and `<Toc>` update in all
+  open views (presenter, audience, second screen). Slidev may reload the
+  views; the current slide number is kept.
+- The switch is not persisted: after a restart, `AUDIENCE` or the headmatter
+  applies again.
+
+The UI element requires the addon to be listed in `addons`; it is not
+available with the `setup/preparser.ts` fallback for older Slidev versions.
 
 ## Audience List Syntax
 
