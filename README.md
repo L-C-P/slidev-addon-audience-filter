@@ -17,24 +17,32 @@ npm install slidev-addon-audience-filter
 
 ## Usage
 
-### 1. Wire up the preparser in your project
+### 1. Enable the addon
 
-> **Important:** Slidev applies the preparser from the **project root** on the
-> initial load only. Addon preparsers are resolved too late to filter the first
-> render, so the entry point must live in your project. Create
-> `setup/preparser.ts` in your Slidev project:
+Add the addon to the `addons` list in your `slides.md` headmatter:
+
+```yaml
+---
+addons:
+  - slidev-addon-audience-filter
+---
+```
+
+This requires **Slidev 52.17.1 or newer**. After adding the addon, fully stop
+and restart the dev server (a hot reload is not enough for preparser changes).
+
+#### Older Slidev versions (< 52.17.1)
+
+Before 52.17.1, Slidev did not apply addon preparsers to the initial render
+([slidevjs/slidev#2646](https://github.com/slidevjs/slidev/issues/2646)), and
+listing the addon in `addons` fails the version check. Instead, leave it out of
+the `addons` list and create `setup/preparser.ts` in your Slidev project:
 
 ```ts
 import {createAudienceFilterPreparser} from 'slidev-addon-audience-filter'
 
 export default createAudienceFilterPreparser()
 ```
-
-After creating or changing `setup/preparser.ts`, fully stop and restart the dev
-server (a hot reload is not enough for preparser changes).
-
-You do **not** need to add this package to the `addons:` list — the
-`setup/preparser.ts` stub above is what activates the filter.
 
 ### 2. Set the active audience
 

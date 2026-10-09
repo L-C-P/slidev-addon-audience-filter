@@ -1,7 +1,5 @@
-// Entry point used when previewing this addon standalone (its own slides.md).
-// In that case this file lives in the preview's project root, so Slidev applies
-// it on the initial load. Consumer projects must add their own thin
-// setup/preparser.ts that calls createAudienceFilterPreparser() (see README).
+// Preparser entry that Slidev loads when this addon is listed in `addons`
+// (Slidev >= 52.17.1). Also used when previewing this addon standalone.
 import {createAudienceFilterPreparser} from '../index.ts'
 
 export default createAudienceFilterPreparser()

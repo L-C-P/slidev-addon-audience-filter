@@ -19,8 +19,9 @@ function normalizeAudienceList(value: string | string[]): string[] {
 /**
  * Creates the audience filter preparser extension.
  *
- * Slidev only applies the preparser from the project root on the initial
- * load, so import this in your project's `setup/preparser.ts`:
+ * Listing the addon in `addons` uses this automatically (Slidev >= 52.17.1).
+ * On older Slidev versions, addon preparsers are not applied on the initial
+ * load, so import this in your project's `setup/preparser.ts` instead:
  *
  * ```ts
  * import {createAudienceFilterPreparser} from 'slidev-addon-audience-filter'

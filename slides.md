@@ -1,7 +1,7 @@
 ---
 theme: default
-# Illustrative demo only. In a real project, filtering is activated by a
-# setup/preparser.ts stub (see README) — not by the addons list.
+# In a real project, enable filtering via `addons: [slidev-addon-audience-filter]`
+# (see README). Here, the addon's own setup/preparser.ts is in the project root.
 audience: live
 ---
 

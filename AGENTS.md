@@ -18,7 +18,7 @@ The active audience is set via the `AUDIENCE` environment variable or the `audie
 | Path | Description |
 |---|---|
 | `index.ts` | Main entry point – exports `createAudienceFilterPreparser()` |
-| `setup/preparser.ts` | Standalone preview entry (used when running this addon's own `slides.md`) |
+| `setup/preparser.ts` | Preparser entry loaded by Slidev when the addon is listed in `addons` (also used by the standalone preview) |
 | `slides.md` | Demo/preview slides for this addon |
 | `.github/workflows/publish.yml` | CI/CD workflow – publishes to npm on tag push |
 
@@ -26,8 +26,8 @@ The active audience is set via the `AUDIENCE` environment variable or the `audie
 
 ## Key concepts
 
-- The Slidev preparser runs only from the **project root** on initial load. Addon preparsers are resolved too late.
-- Consumer projects must create their own `setup/preparser.ts` that imports `createAudienceFilterPreparser()`.
+- Consumer projects enable the filter by listing the addon in `addons`. This requires Slidev >= 52.17.1, which applies addon preparsers on the initial load (fix for slidevjs/slidev#2646 via PR #2664). `engines.slidev` enforces this.
+- Fallback for older Slidev: consumers create their own `setup/preparser.ts` that imports `createAudienceFilterPreparser()` and do not list the addon in `addons`.
 - `AUDIENCE=bypass` disables all filtering (useful for IDE editing).
 - `showFor` and `hideFor` support both comma-separated strings and YAML arrays. Values are case-insensitive.
 
